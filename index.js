@@ -1,21 +1,14 @@
 const Joi = require('joi');
 const express = require('express');
+const genres = require('./routes/genres');
+const home = require('./routes/home');
+
 const app = express();
 
 app.use(express.json());
+app.use('/api/genres', genres);
+app.use('/', home);
 
-const genres = [
-    { id: 1, name: 'Rock' },
-    { id: 2, name: 'Country' }
-]
-
-app.get('/', (req, res) => {
-    res.send('Hi');
-});
-
-app.get('/api/genres', (req, res) => {
-    res.send(genres);
-});
 
 // PORT
 const port = process.env.PORT || 3000
